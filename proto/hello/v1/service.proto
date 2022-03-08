@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package = "github.com/fudute/api/proto/hello";
+
+import "google/api/annotations.proto";
+
+package proto.hello.v1;
+
+service HelloService {
+    rpc Hello(HelloReq) returns(HelloResp) {
+        option (google.api.http) = {
+            get: "/v1/hello"
+        };
+    }
+}
+
+message HelloReq {
+    string msg = 1;
+}
+
+message HelloResp {
+    string msg = 2;
+}
