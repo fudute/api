@@ -1,14 +1,14 @@
 version: v1
 plugins:
   - name: go
-    out: .
+    out: pbgen/go
     opt:
       - paths=source_relative
   - name: go-grpc
-    out: .
+    out: pbgen/go
     opt:
       - paths=source_relative
   - name: grpc-gateway
-    out: .
+    out: pbgen/go
     opt:
       - paths=source_relative

@@ -1,23 +1,68 @@
 syntax = "proto3";
 
-option go_package = "github.com/fudute/api/proto/hello";
+option go_package = "github.com/fudute/api/pbgen/hellopb/v1;hellopb";
 
 import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "proto/hello/v1/hello.proto";
 
 package proto.hello.v1;
 
 service HelloService {
-    rpc Hello(HelloReq) returns(HelloResp) {
-        option (google.api.http) = {
-            get: "/v1/hello"
-        };
-    }
+  rpc Hello(HelloRequest) returns(HelloResponse) {
+    option (google.api.http) = {
+      get: "/v1/hello/{user.first_name}"
+    };
+  }
+  rpc Hi(HiRequest) returns (HiResponse) {
+    option (google.api.http) = {
+      post: "/v1/hi"
+      body: "*"
+    };
+  }
+  rpc GetTime(GetTimeRequest) returns (GetTimeResponse) {
+    option (google.api.http) = {
+      get: "/v1/time"
+    };
+  }
+  rpc GetWeather(GetWeatherRequest) returns (GetWeatherResponse) {
+    option (google.api.http) = {
+      get: "/v1/weather"
+    };
+  }
 }
 
-message HelloReq {
-    string msg = 1;
+message GetWeatherRequest {
+}
+message GetWeatherResponse {
+  message Rainning {
+  }
+  message Cloudy {
+  }
+  oneof weather {
+    Rainning raining = 1;
+    Cloudy cloudy = 2;
+  }
 }
 
-message HelloResp {
-    string msg = 2;
+message GetTimeRequest {
+}
+message GetTimeResponse {
+    google.protobuf.Timestamp now = 1;
+}
+
+message HelloRequest {
+  User user = 1;
+}
+
+message HelloResponse {
+  string hello_msg = 1;
+}
+
+message HiRequest {
+  User user = 1;
+}
+
+message HiResponse {
+  string hi_msg = 1;
 }

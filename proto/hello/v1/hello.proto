@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "github.com/fudute/api/pbgen/hellopb/v1;hellopb";
+
+package proto.hello.v1;
+
+message User {
+  string first_name = 1;
+  string last_name = 2;
+  int32 age = 3;
+}

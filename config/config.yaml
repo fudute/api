@@ -1,0 +1,5 @@
+template: hinfra-rpcmeta-ci
+image: my-image
+enable_acl: true
+enable_diff: true
+psm: my-psm
